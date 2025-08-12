@@ -1,0 +1,48 @@
+:root{
+  --bg:#0b1020;
+  --card:#0f1724;
+  --muted:#9aa5b1;
+  --accent:#ff7a59;
+  --glass: rgba(255,255,255,0.06);
+  --radius:12px;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter,system-ui,Arial;background:
+  radial-gradient(1200px 600px at 10% 10%, rgba(59,130,246,0.06), transparent),
+  linear-gradient(180deg,#071021,#081229);
+  color:#e6eef8}
+.top{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));backdrop-filter: blur(6px)}
+.logo{font-weight:800;letter-spacing:0.6px}
+.container{max-width:1200px;margin:18px auto;padding:14px}
+.controls{display:flex;gap:12px;align-items:center;margin-bottom:12px}
+.btn{background:linear-gradient(90deg,var(--accent),#3b82f6);border:none;padding:8px 12px;border-radius:10px;color:white;font-weight:700;cursor:pointer}
+.muted{color:var(--muted);font-size:13px;margin-left:8px}
+
+/* stage */
+.stage{min-height:60vh;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));border-radius:12px;padding:14px;display:flex;flex-wrap:wrap;gap:8px;align-content:flex-start;overflow:hidden;position:relative}
+
+/* animated item */
+.card{
+  width:90px;height:90px;border-radius:12px;background:linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));box-shadow:0 8px 30px rgba(2,6,23,0.6);
+  display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;
+  transform:translateZ(0); /* improve perf */
+  user-select:none;
+  border:1px solid rgba(255,255,255,0.03);
+}
+
+/* utility classes we will use */
+.faint{opacity:.85;color:rgba(255,255,255,0.9);font-size:12px}
+
+/* fallback animation (if script not loaded) */
+@keyframes floatFallback {
+  0%{transform: translateY(0)}
+  50%{transform: translateY(-8px)}
+  100%{transform: translateY(0)}
+}
+.fallback{animation: floatFallback 2.2s ease-in-out infinite}
+
+/* make layout responsive */
+@media (max-width:640px){
+  .card{width:72px;height:72px;font-size:12px}
+  .controls{flex-direction:column;align-items:flex-start;gap:8px}
+}
