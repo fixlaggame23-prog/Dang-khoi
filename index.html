@@ -1,466 +1,165 @@
 <!DOCTYPE html>
-
 <html lang="vi">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
-<title>Trung Tâm Gaming</title>
-<style>
-:root{
-  --bg:#0a0d13;
-  --bg-deep:#0d121a;
-  --text:#eef4ff;
-  --muted:#9fb0c6;
-  --vpn-a:#79eaff;
-  --vpn-b:#c8a3ff;
-  --pro-a:#7affd1;
-  --pro-b:#ff9bd7;
-  --gold:#f6d176;
-}
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;
-  color:var(--text);
-  background: radial-gradient(1000px 600px at 10% -10%, #162033 0%, transparent 60%),
-             radial-gradient(900px 500px at 110% 120%, #1c1330 0%, transparent 70%),
-             linear-gradient(180deg, var(--bg), var(--bg-deep));
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-  line-height:1.5;
-  -webkit-tap-highlight-color: transparent;
-}
-.app{min-height:100dvh; display:grid; grid-template-rows: auto 1fr auto}
-.header{position:sticky; top:0; z-index:20; padding:16px 18px 10px;
-  background:linear-gradient(180deg, rgba(10,13,19,.95), rgba(10,13,19,.55), rgba(10,13,19,0));
-  backdrop-filter: blur(8px); border-bottom:1px solid rgba(255,255,255,.06);
-}
-.header h1{margin:0; font-size:22px; letter-spacing:.4px}
-.content{position:relative; overflow:hidden}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Mods Minecraft Gaming</title>
+    <!-- Phông chữ gaming và dễ đọc -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Thư viện Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .gaming-title {
+            font-family: 'Orbitron', sans-serif;
+            text-shadow: 0 0 10px rgba(74, 222, 128, 0.7);
+        }
+        
+        /* Hiệu ứng viền cầu vồng */
+        @keyframes rainbow-border-animation {
+            0%, 100% { border-color: #ff0000; }
+            14% { border-color: #ff7f00; }
+            28% { border-color: #ffff00; }
+            42% { border-color: #00ff00; }
+            57% { border-color: #0000ff; }
+            71% { border-color: #4b0082; }
+            85% { border-color: #9400d3; }
+        }
 
-.section{
-  position:absolute; inset:0;
-  padding:14px 14px 100px;
-  overflow:auto;
-  opacity:0; transform: translateY(8px) scale(.985);
-  transition: opacity .35s ease, transform .35s ease;
-  pointer-events:none;
-}
-.section.active{opacity:1; transform:none; pointer-events:auto}
+        .rainbow-border-effect {
+            border: 4px solid transparent;
+            background-clip: padding-box, border-box;
+            background-origin: padding-box, border-box;
+            background-image: linear-gradient(to right, #0a0a0a, #0a0a0a),
+                              linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+            animation: rainbow-border-animation 2s linear infinite;
+        }
 
-/* bottom navbar */
-.tabs{
-  position:sticky; bottom:0; z-index:40;
-  display:grid; grid-template-columns: repeat(3,1fr);
-  height:80px;
-  background:linear-gradient(180deg, rgba(12,16,24,.2), rgba(12,16,24,.9));
-  border-top:1px solid rgba(255,255,255,.08);
-  backdrop-filter: blur(10px);
-}
-.tab-btn{
-  border:0; background:transparent; color:var(--muted);
-  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px;
-  font-size:12px;
-}
-.tab-btn svg{width:22px; height:22px; opacity:.9}
-.tab-btn.active{color:var(--text)}
-
-/* shared carousel */
-.carousel{
-  display:flex; align-items:center; justify-content:center;
-  gap:24px; overflow-x:auto; padding:16px 10px 24px;
-  scroll-snap-type:x mandatory;
-  -ms-overflow-style: none; scrollbar-width:none;
-}
-.carousel::-webkit-scrollbar{display:none}
-.slide{
-  flex: 0 0 84%;
-  max-width:520px;
-  scroll-snap-align:center;
-  border-radius:24px;
-  position:relative;
-  padding:18px 14px 22px;
-  border:1px solid rgba(255,255,255,.08);
-  overflow:hidden;
-}
-
-/* phone mockup centered */
-.phone{
-  width:min(320px, 78vw);
-  aspect-ratio: 9 / 19.5;
-  margin: 6px auto 10px;
-  border-radius: 28px;
-  position:relative;
-  display:grid; place-items:center;
-  box-shadow: inset 0 0 0 2px rgba(255,255,255,.14), 0 18px 40px rgba(0,0,0,.45);
-  background: radial-gradient(180px 140px at 70% 15%, rgba(255,255,255,.15), transparent 60%),
-              linear-gradient(180deg, rgba(18,24,34,.95), rgba(10,14,20,.92));
-}
-.phone::before{
-  content:""; position:absolute; inset:8px; border-radius:22px;
-  background: radial-gradient(200px 160px at 30% 20%, rgba(255,255,255,.08), transparent 60%),
-              linear-gradient(180deg, rgba(8,10,14,.6), rgba(10,12,16,.8));
-  box-shadow: inset 0 0 0 2px rgba(255,255,255,.06);
-}
-.logo{
-  position:relative; z-index:1;
-  width:96px; height:96px; border-radius:22px;
-  display:grid; place-items:center;
-  background:linear-gradient(180deg, rgba(255,255,255,.15), rgba(255,255,255,.04));
-  border:1px solid rgba(255,255,255,.14);
-}
-
-/* labels */
-.slide h3{margin:10px 10px 6px; font-size:18px}
-.slide p{margin:0 10px 10px; color:var(--muted); font-size:13px}
-.slide .cta{
-  position:absolute; right:14px; bottom:14px;
-  padding:10px 14px; border-radius:999px;
-  border:1px solid rgba(255,255,255,.12);
-  background:rgba(255,255,255,.06);
-  color:var(--text); font-weight:700; letter-spacing:.3px; font-size:12px;
-  backdrop-filter: blur(4px);
-}
-
-/* TAB1 cosmic */
-#tab1{
-  background:
-    radial-gradient(1200px 800px at -10% -10%, rgba(121,234,255,.12), transparent 60%),
-    radial-gradient(1000px 700px at 110% 90%, rgba(200,163,255,.12), transparent 60%);
-}
-.cosmic .slide{
-  background:
-    radial-gradient(240px 180px at 90% -20%, rgba(121,234,255,.22), transparent 60%),
-    radial-gradient(260px 200px at -10% 110%, rgba(200,163,255,.24), transparent 60%),
-    linear-gradient(180deg, rgba(14,20,30,.96), rgba(10,14,22,.92));
-}
-.starfield, .starfield::before, .starfield::after{
-  content:"";
-  position:absolute; inset:-200% -200%;
-  background:
-    radial-gradient(2px 2px at 12% 42%, #fff, transparent 60%),
-    radial-gradient(1.6px 1.6px at 78% 12%, #c9f6ff, transparent 60%),
-    radial-gradient(1.4px 1.4px at 47% 86%, #f7d8ff, transparent 60%),
-    radial-gradient(1.2px 1.2px at 22% 73%, #fff, transparent 60%);
-  opacity:.18; animation: drift 120s linear infinite;
-  pointer-events:none;
-}
-.starfield::before{opacity:.12; animation-duration: 180s}
-.starfield::after{opacity:.08; animation-duration: 240s}
-@keyframes drift{from{transform:translate3d(0,0,0)} to{transform:translate3d(-25%,-25%,0)}}
-
-/* TAB2 neon gaming */
-#tab2{
-  background:
-    radial-gradient(1100px 650px at 110% -10%, rgba(122,255,209,.12), transparent 60%),
-    radial-gradient(1000px 650px at -10% 120%, rgba(255,155,215,.12), transparent 60%);
-}
-.neongrid{
-  position:absolute; inset:0; opacity:.5; pointer-events:none;
-  background-image:
-    linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
-  background-size: 60px 60px;
-  mask-image: radial-gradient(80% 60% at 50% 40%, #000, transparent 85%);
-}
-.neon .slide{
-  background:
-    conic-gradient(from 200deg at 110% -10%, rgba(122,255,209,.27), transparent 35%),
-    conic-gradient(from -20deg at -10% 110%, rgba(255,155,215,.27), transparent 45%),
-    linear-gradient(180deg, rgba(16,18,28,.96), rgba(10,12,22,.92));
-  box-shadow: 0 0 0 1px rgba(255,255,255,.06) inset, 0 20px 40px rgba(0,0,0,.4);
-}
-
-/* TAB3 luxury info */
-#tab3{
-  background:
-    radial-gradient(1200px 900px at 100% 0%, rgba(246,209,118,.10), transparent 60%),
-    radial-gradient(900px 600px at -10% 120%, rgba(178,210,255,.08), transparent 60%);
-}
-.profile{
-  max-width:900px; margin:10px auto; padding:16px;
-  display:flex; gap:12px; align-items:center;
-  background:linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
-  border:1px solid rgba(255,255,255,.10);
-  border-radius:24px; box-shadow: 0 12px 30px rgba(0,0,0,.4);
-}
-.avatar{
-  width:68px; height:68px; border-radius:16px; overflow:hidden;
-  background: radial-gradient(circle at 30% 30%, #ffe6f0, #b3a6ff 70%);
-  box-shadow: inset 0 0 0 2px rgba(255,255,255,.35);
-}
-.links{display:flex; flex-wrap:wrap; gap:10px; padding:12px 0}
-.links a{
-  text-decoration:none; color:var(--text);
-  padding:10px 14px; border-radius:999px;
-  border:1px solid rgba(255,255,255,.14);
-  background:linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.03));
-}
-.notice{color:var(--muted); font-size:14px}
-
-/* svg sizes */
-.logo svg{width:62px; height:62px}
-.fade{animation:fade .5s ease both}
-@keyframes fade{from{opacity:0; transform:translateY(6px)} to{opacity:1; transform:none}}
-
-.carousel {
-  scroll-behavior: smooth;
-}
-.phone .center-logo {
-  position: absolute;
-  top: 38%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 3;
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  border: 3px solid #fff;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  box-shadow: 0 0 12px rgba(255,255,255,0.6);
-}
-.phone .center-text {
-  position: absolute;
-  bottom: 25%;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 4;
-  padding: 8px 14px;
-  background: linear-gradient(135deg, gold, limegreen);
-  color: #000;
-  font-weight: bold;
-  font-size: 14px;
-  border-radius: 999px;
-  box-shadow: 0 0 8px rgba(0,0,0,0.4);
-}
-</style>
+        /* Tùy chỉnh thanh cuộn */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111827;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4ade80;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #22c55e;
+        }
+    </style>
 </head>
-<body>
-<div class="app">
-<div class="header"><h1>Trung Tâm Gaming</h1></div>
-<main class="content">
-<!-- TAB 1: Vũ trụ bí ẩn -->
-<section class="section active cosmic" id="tab1">
-<div aria-hidden="true" class="starfield"></div>
-<div class="carousel">
-<!-- 5 slides VPN with centered phone -->
-<article class="slide fade">
-<div class="phone">
-<div class="logo">
-<svg fill="none" viewbox="0 0 64 64">
-<defs><lineargradient id="vpn1" x1="0" x2="1" y1="1" y2="0"><stop stop-color="#79eaff"></stop><stop offset="1" stop-color="#c8a3ff"></stop></lineargradient></defs>
-<circle cx="32" cy="30" fill="url(#vpn1)" r="14"></circle>
-<ellipse cx="32" cy="36" rx="26" ry="8" stroke="url(#vpn1)" stroke-width="3"></ellipse>
-</svg>
-</div>
-<div class="center-logo" style="background-image: url('your-logo.png');"></div><div class="center-text">Vào Ngay</div></div>
-<h3>VPN Nebula</h3>
-<p>Tốc độ ổn định – bảo mật giữa không gian.</p>
-<button class="cta">Dùng Ngay</button>
-</article>
-<article class="slide fade">
-<div class="phone">
-<div class="logo">
-<svg fill="none" viewbox="0 0 64 64">
-<defs><lineargradient id="vpn2" x1="1" x2="0" y1="0" y2="1"><stop stop-color="#c8a3ff"></stop><stop offset="1" stop-color="#79eaff"></stop></lineargradient></defs>
-<path d="M12 42c10-10 30-10 40 0" stroke="url(#vpn2)" stroke-linecap="round" stroke-width="4"></path>
-<circle cx="32" cy="26" fill="url(#vpn2)" r="12"></circle>
-</svg>
-</div>
-<div class="center-logo" style="background-image: url('your-logo.png');"></div><div class="center-text">Vào Ngay</div></div>
-<h3>Orion Shield</h3>
-<p>Khiên bảo hộ đa lớp, vượt mọi chướng ngại.</p>
-<button class="cta">Dùng Ngay</button>
-</article>
-<article class="slide fade">
-<div class="phone">
-<div class="logo">
-<svg fill="none" viewbox="0 0 64 64">
-<defs><lineargradient id="vpn3" x1="0" x2="1" y1="1" y2="0"><stop stop-color="#79eaff"></stop><stop offset="1" stop-color="#c8a3ff"></stop></lineargradient></defs>
-<path d="M12 32h40" opacity=".35" stroke="url(#vpn3)" stroke-linecap="round" stroke-width="10"></path>
-<circle cx="32" cy="30" fill="url(#vpn3)" r="14"></circle>
-</svg>
-</div>
-<div class="center-logo" style="background-image: url('your-logo.png');"></div><div class="center-text">Vào Ngay</div></div>
-<h3>Cosmo Flux</h3>
-<p>Độ trễ thấp, đường hầm bền vững.</p>
-<button class="cta">Dùng Ngay</button>
-</article>
-<article class="slide fade">
-<div class="phone">
-<div class="logo">
-<svg fill="none" viewbox="0 0 64 64">
-<defs><lineargradient id="vpn4" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#9effd6"></stop><stop offset="1" stop-color="#8ea0ff"></stop></lineargradient></defs>
-<path d="M10 40c8-16 36-16 44 0" stroke="url(#vpn4)" stroke-linecap="round" stroke-width="4"></path>
-<path d="M18 28c6-10 22-10 28 0" stroke="url(#vpn4)" stroke-linecap="round" stroke-width="3"></path>
-</svg>
-</div>
-<div class="center-logo" style="background-image: url('your-logo.png');"></div><div class="center-text">Vào Ngay</div></div>
-<h3>Stellar Gate</h3>
-<p>Cổng dịch chuyển siêu tốc cho mọi máy chủ.</p>
-<button class="cta">Dùng Ngay</button>
-</article>
-<article class="slide fade">
-<div class="phone">
-<div class="logo">
-<svg fill="none" viewbox="0 0 64 64">
-<defs><lineargradient id="vpn5" x1="1" x2="0" y1="0" y2="1"><stop stop-color="#9df5ff"></stop><stop offset="1" stop-color="#d1b4ff"></stop></lineargradient></defs>
-<circle cx="26" cy="28" fill="url(#vpn5)" r="10"></circle>
-<circle cx="42" cy="36" fill="url(#vpn5)" opacity=".85" r="8"></circle>
-<path d="M8 50c16-10 32-10 48 0" stroke="url(#vpn5)" stroke-linecap="round" stroke-width="4"></path>
-</svg>
-</div>
-<div class="center-logo" style="background-image: url('your-logo.png');"></div><div class="center-text">Vào Ngay</div></div>
-<h3>Quantum Veil</h3>
-<p>Ngụy trang lưu lượng – vượt giới hạn.</p>
-<button class="cta">Dùng Ngay</button>
-</article>
-</div>
-</section>
-<!-- TAB 2: Gaming kì bí -->
-<section class="section neon" id="tab2">
-<div aria-hidden="true" class="neongrid"></div>
-<div class="carousel">
-<!-- 5 slides PRO with centered phone -->
-<article class="slide fade">
-<div class="phone">
-<div class="logo">
-<svg fill="none" stroke-linecap="round" stroke-width="3" viewbox="0 0 64 64">
-<defs><lineargradient id="pro1" x1="0" x2="1" y1="1" y2="0"><stop stop-color="#7affd1"></stop><stop offset="1" stop-color="#ff9bd7"></stop></lineargradient></defs>
-<path d="M18 34h8m12 0h8M18 42h28" stroke="url(#pro1)"></path>
-<rect height="24" rx="6" stroke="url(#pro1)" width="40" x="12" y="24"></rect>
-</svg>
-</div>
-<div class="center-logo" style="background-image: url('your-logo.png');"></div><div class="center-text">Vào Ngay</div></div>
-<h3>Pro GamePad</h3>
-<p>Điều khiển mượt – phản hồi tức thì.</p>
-<button class="cta">Kích Hoạt</button>
-</article>
-<article class="slide fade">
-<div class="phone">
-<div class="logo">
-<svg fill="none" viewbox="0 0 64 64">
-<defs><lineargradient id="pro2" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#c8a3ff"></stop><stop offset="1" stop-color="#7affd1"></stop></lineargradient></defs>
-<path d="M24 50 40 14l-2 18h10L24 50z" stroke="url(#pro2)" stroke-linejoin="round" stroke-width="4"></path>
-</svg>
-</div>
-<div class="center-logo" style="background-image: url('your-logo.png');"></div><div class="center-text">Vào Ngay</div></div>
-<h3>Pro Thunder</h3>
-<p>Tăng tốc xử lý, giảm giật lag.</p>
-<button class="cta">Kích Hoạt</button>
-</article>
-<article class="slide fade">
-<div class="phone">
-<div class="logo">
-<svg fill="none" viewbox="0 0 64 64">
-<defs><lineargradient id="pro3" x1="0" x2="1" y1="1" y2="0"><stop stop-color="#8affc7"></stop><stop offset="1" stop-color="#c8a3ff"></stop></lineargradient></defs>
-<path d="M18 38c0-8 6-14 14-14s14 6 14 14" stroke="url(#pro3)" stroke-width="4"></path>
-<circle cx="32" cy="42" fill="url(#pro3)" r="4"></circle>
-</svg>
-</div>
-<div class="center-logo" style="background-image: url('your-logo.png');"></div><div class="center-text">Vào Ngay</div></div>
-<h3>Ghost Sense</h3>
-<p>Nhắm tinh chỉnh – cảm biến bí ẩn.</p>
-<button class="cta">Kích Hoạt</button>
-</article>
-<article class="slide fade">
-<div class="phone">
-<div class="logo">
-<svg fill="none" viewbox="0 0 64 64">
-<defs><lineargradient id="pro4" x1="1" x2="0" y1="0" y2="1"><stop stop-color="#79eaff"></stop><stop offset="1" stop-color="#ffb3da"></stop></lineargradient></defs>
-<path d="M20 44c10-8 14-14 12-28 14 6 18 18 10 28" stroke="url(#pro4)" stroke-linecap="round" stroke-width="4"></path>
-</svg>
-</div>
-<div class="center-logo" style="background-image: url('your-logo.png');"></div><div class="center-text">Vào Ngay</div></div>
-<h3>Dragon Core</h3>
-<p>Sức mạnh huyền bí – giữ FPS ổn định.</p>
-<button class="cta">Kích Hoạt</button>
-</article>
-<article class="slide fade">
-<div class="phone">
-<div class="logo">
-<svg fill="none" stroke-width="4" viewbox="0 0 64 64">
-<defs><lineargradient id="pro5" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#79eaff"></stop><stop offset="1" stop-color="#c8a3ff"></stop></lineargradient></defs>
-<circle cx="22" cy="40" r="8" stroke="url(#pro5)"></circle>
-<circle cx="42" cy="24" r="6" stroke="url(#pro5)"></circle>
-<path d="M28 34 36 30" stroke="url(#pro5)" stroke-linecap="round"></path>
-</svg>
-</div>
-<div class="center-logo" style="background-image: url('your-logo.png');"></div><div class="center-text">Vào Ngay</div></div>
-<h3>Ninja Sync</h3>
-<p>Đồng bộ thao tác – combo như bóng.</p>
-<button class="cta">Kích Hoạt</button>
-</article>
-</div>
-</section>
-<!-- TAB 3: Sang trọng quý phái -->
-<section class="section" id="tab3">
-<div class="profile">
-<div class="avatar">
-<svg height="64" viewbox="0 0 64 64" width="64">
-<circle cx="32" cy="24" fill="rgba(0,0,0,.16)" r="12"></circle>
-<path d="M12 58c4-12 36-12 40 0" fill="rgba(0,0,0,.16)"></path>
-</svg>
-</div>
-<div>
-<div style="font-weight:800; font-size:18px">Player Gaming</div>
-<div style="color:var(--muted); font-size:13px">Thông tin &amp; liên hệ chính thức</div>
-</div>
-</div>
-<div class="profile" style="flex-direction:column; align-items:flex-start">
-<div class="links">
-<a href="#" rel="noopener" target="_blank">Discord</a>
-<a href="#" rel="noopener" target="_blank">Facebook</a>
-<a href="#" rel="noopener" target="_blank">TikTok</a>
-</div>
-<div class="notice">Nếu ai không biết xài có thể xem và nhắn tin qua các nền tảng chính thức của chúng tôi.</div>
-</div>
-</section>
-</main>
-<nav class="tabs">
-<button aria-label="Thiết Bị VPN" class="tab-btn active" data-tab="tab1">
-<svg fill="none" stroke="currentColor" stroke-width="1.6" viewbox="0 0 24 24">
-<path d="M4 10a8 8 0 1 0 16 0"></path><circle cx="12" cy="10" r="4"></circle>
-</svg><span>Thiết Bị VPN</span>
-</button>
-<button aria-label="Thiết Bị Pro" class="tab-btn" data-tab="tab2">
-<svg fill="none" stroke="currentColor" stroke-width="1.6" viewbox="0 0 24 24">
-<rect height="12" rx="3" width="16" x="4" y="6"></rect><path d="M8 13h2m4 0h2M8 16h8"></path>
-</svg><span>Thiết Bị Pro</span>
-</button>
-<button aria-label="Thông Tin" class="tab-btn" data-tab="tab3">
-<svg fill="none" stroke="currentColor" stroke-width="1.6" viewbox="0 0 24 24">
-<circle cx="12" cy="8" r="3"></circle><path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6"></path>
-</svg><span>Thông Tin</span>
-</button>
-</nav>
-</div>
-<script>
-const tabs = document.querySelectorAll('.tab-btn');
-const sections = document.querySelectorAll('.section');
-tabs.forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    const id = btn.dataset.tab;
-    tabs.forEach(b=>b.classList.toggle('active', b===btn));
-    sections.forEach(s=>s.classList.toggle('active', s.id===id));
-  });
-});
+<body class="bg-gray-950 text-gray-100 min-h-screen flex flex-col items-center py-10 px-4 md:px-8">
 
-// drag-scroll carousels
-document.querySelectorAll('.carousel').forEach(el=>{
-  let isDown=false, startX=0, scrollLeft=0;
-  const start=(x)=>{isDown=true; startX=x - el.offsetLeft; scrollLeft=el.scrollLeft; el.style.scrollBehavior='auto'}
-  const move=(x)=>{ if(!isDown) return; const walk=(x - el.offsetLeft - startX); el.scrollLeft = scrollLeft - walk }
-  const end=()=>{ isDown=false; setTimeout(()=>{ el.style.scrollBehavior='smooth' },0) }
-  el.addEventListener('mousedown', e=>start(e.pageX));
-  el.addEventListener('mousemove', e=>move(e.pageX));
-  el.addEventListener('mouseleave', end);
-  el.addEventListener('mouseup', end);
-  el.addEventListener('touchstart', e=>start(e.touches[0].pageX), {passive:true});
-  el.addEventListener('touchmove', e=>move(e.touches[0].pageX), {passive:true});
-  el.addEventListener('touchend', end);
-});
-</script>
+    <!-- Tiêu đề chính -->
+    <header class="w-full max-w-5xl text-center mb-12">
+        <h1 class="gaming-title text-4xl sm:text-5xl lg:text-6xl font-bold text-green-400 mb-4">
+            BLOG MODS MINECRAFT
+        </h1>
+        <p class="text-lg sm:text-xl text-gray-400">
+            Khám phá và tải xuống những bản mod chất lượng nhất!
+        </p>
+    </header>
+
+    <!-- Thanh tìm kiếm -->
+    <div class="w-full max-w-2xl mb-12">
+        <div class="relative">
+            <input type="text" id="search-input" placeholder="Tìm kiếm mods..."
+                   class="w-full py-3 pl-12 pr-6 rounded-full bg-gray-800 border-2 border-gray-700 text-gray-200
+                          focus:outline-none focus:border-green-500 focus:ring-2 focus:ring-green-500 transition-all
+                          placeholder-gray-500 text-lg">
+            <!-- Biểu tượng kính lúp -->
+            <svg class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+        </div>
+    </div>
+
+    <!-- Container cho các bài đăng blog -->
+    <main id="mod-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-5xl">
+        <!-- Các mod sẽ được hiển thị ở đây bởi JavaScript -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-auto w-full text-center text-gray-600 text-sm py-8">
+        © 2024 Blog Mods Minecraft.
+    </footer>
+
+    <script>
+        // Dữ liệu mẫu cho các mod
+        const mods = [
+            { name: "From The Fog", downloadUrl: "https://link4sub.com/yMMO"
+            },
+        ];
+
+        const modContainer = document.getElementById('mod-container');
+        const searchInput = document.getElementById('search-input');
+
+        // Hàm để tạo và hiển thị thẻ mod
+        function renderMods(modsToRender) {
+            modContainer.innerHTML = ''; // Xóa các thẻ mod cũ
+            
+            if (modsToRender.length === 0) {
+                modContainer.innerHTML = `
+                    <p class="col-span-full text-center text-gray-400 text-lg">
+                        Không tìm thấy mod nào phù hợp.
+                    </p>`;
+                return;
+            }
+
+            modsToRender.forEach(mod => {
+                const modCard = document.createElement('div');
+                modCard.className = 'relative bg-gray-800 p-8 rounded-xl shadow-lg transition-transform duration-300 ' +
+                                    'transform hover:scale-105 cursor-pointer flex flex-col justify-between items-center ' +
+                                    'ring-4 ring-transparent hover:ring-green-500';
+                
+                modCard.innerHTML = `
+                    <h2 class="text-2xl font-semibold text-green-400 text-center mb-6">${mod.name}</h2>
+                    <a href="${mod.downloadUrl}" target="_blank"
+                       class="mt-auto px-8 py-3 font-bold text-lg rounded-full shadow-md
+                              bg-gradient-to-r from-green-500 to-lime-500 text-white
+                              hover:from-green-400 hover:to-lime-400 transition-colors duration-300">
+                        Tải xuống
+                    </a>
+                `;
+
+                // Xử lý sự kiện click để kích hoạt hiệu ứng viền cầu vồng
+                modCard.addEventListener('click', () => {
+                    // Thêm class để bật animation
+                    modCard.classList.add('rainbow-border-effect');
+                    // Xóa class sau 2 giây để hiệu ứng kết thúc
+                    setTimeout(() => {
+                        modCard.classList.remove('rainbow-border-effect');
+                    }, 2000);
+                });
+
+                // Ngăn chặn sự kiện click lan truyền lên thẻ cha khi nhấn nút tải xuống
+                const downloadBtn = modCard.querySelector('a');
+                downloadBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                });
+
+                modContainer.appendChild(modCard);
+            });
+        }
+
+        // Lọc mod khi người dùng nhập vào thanh tìm kiếm
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const filteredMods = mods.filter(mod => mod.name.toLowerCase().includes(searchTerm));
+            renderMods(filteredMods);
+        });
+
+        // Hiển thị tất cả các mod khi trang web tải xong
+        document.addEventListener('DOMContentLoaded', () => {
+            renderMods(mods);
+        });
+    </script>
 </body>
 </html>
